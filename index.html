@@ -26,10 +26,24 @@
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
+
+        /* Estilo para el logo */
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 80px; /* Ajusta el tamaño del logo */
+            height: auto;
+            z-index: 1000; /* Para que esté sobre el mapa */
+        }
     </style>
 </head>
 <body>
+    <!-- Contenedor del mapa -->
     <div id="map"></div>
+
+    <!-- Logo en el costado derecho -->
+    <img src="SASJC.png" alt="Logo SASJC" class="logo">
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -37,4 +51,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
