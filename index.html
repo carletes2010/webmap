@@ -12,52 +12,12 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Evita el scroll */
+            overflow: hidden;
         }
 
         #map {
             height: 100%;
             width: 100%;
-        }
-
-        .info-box {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-        }
-
-        /* Estilo para el logo en la parte superior derecha */
-        .logo {
-            position: absolute;
-            top: 80px;
-            right: 90px;
-            width: 300px; /* Ajusta el tamaño del logo */
-            height: auto;
-            z-index: 1000; /* Para que esté sobre el mapa */
-        }
-
-        /* Estilo para la simbología en la esquina inferior derecha */
-        .simbolgia {
-            position: absolute;
-            bottom: 30px;
-            left: 20px;
-            width: 270px; /* Ajusta el tamaño de la simbología */
-            height: auto;
-            z-index: 1000; /* Para que esté sobre el mapa */
-        }
-
-        /* Estilo para la marca de agua */
-        .marca-agua {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.2; /* Hace la marca de agua transparente */
-            pointer-events: none; /* Evita interferencias con el mapa */
-            z-index: 999; /* Coloca la marca sobre el mapa */
-            width: 300px; /* Tamaño de la marca de agua */
-            height: auto;
         }
 
         /* Copyright debajo de la simbología */
@@ -82,14 +42,21 @@
             border-radius: 5px;
             z-index: 1000;
         }
+
+        /* Estilo para la simbología */
+        .simbolgia {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            width: 270px;
+            height: auto;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <!-- Contenedor del mapa -->
     <div id="map"></div>
-
-    <!-- Logo en el costado derecho -->
-    <img src="SASJC.png" alt="Logo SASJC" class="logo">
 
     <!-- Simbología en la esquina inferior derecha -->
     <img src="simbolgia.png" alt="Simbología" class="simbolgia">
@@ -97,17 +64,22 @@
     <!-- Copyright debajo de la simbología -->
     <div class="copyright">© SASJC - Todos los derechos reservados</div>
 
-    <!-- Cuenta regresiva en la esquina inferior derecha -->
+    <!-- Cuenta regresiva -->
     <div class="countdown" id="countdown">Reiniciando en: 15:00</div>
-
-    <!-- Marca de agua centrada -->
-    <img src="SASJC.png" alt="Marca de Agua" class="marca-agua">
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Script para la cuenta regresiva -->
     <script>
+        // Inicialización del mapa
+        document.addEventListener("DOMContentLoaded", function () {
+            const map = L.map('map').setView([19.4326, -99.1332], 6); // Coordenadas CDMX
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+        });
+
+        // Lógica de cuenta regresiva
         const countdownElement = document.getElementById("countdown");
         let timeLeft = 15 * 60; // 15 minutos en segundos
 
@@ -119,11 +91,11 @@
             timeLeft--;
 
             if (timeLeft < 0) {
-                location.reload(); // Reinicia la página
+                location.reload();
             }
         }
 
-        setInterval(updateCountdown, 1000); // Actualiza cada segundo
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
