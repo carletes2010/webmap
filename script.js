@@ -1,17 +1,16 @@
 // Inicializa el mapa centrado en la CDMX
 const map = L.map('map').setView([19.4326, -99.1332], 6);
 
-// Agregar capa de mapa base desde OpenStreetMap
+// Agregar la capa de mapa base desde OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 // Función para asignar íconos personalizados
 function getIcon(sismo) {
-    const title = sismo.title.toUpperCase(); // Convertir a mayúsculas para comparación segura
-
-    if (title.includes("SASMEX")) {
-        // Icono para eventos SASMEX
+    // Detectar si el título contiene "SASMEX:"
+    if (sismo.title.startsWith("SASMEX:")) {
+        // Ícono especial para eventos SASMEX
         return L.icon({
             iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
             iconSize: [40, 40],
@@ -19,9 +18,10 @@ function getIcon(sismo) {
             popupAnchor: [0, -40]
         });
     } else {
-        // Iconos basados en magnitud
+        // Extraer la magnitud del título
         const magnitude = parseFloat(sismo.title.split(",")[0]) || 0;
 
+        // Asignar íconos según la magnitud
         if (magnitude < 4) {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/leve.png',
@@ -64,7 +64,7 @@ fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
                 .bindPopup(`
                     <div class="info-box">
                         <b>${sismo.title}</b><br>
-                        Origen: ${sismo.title.toUpperCase().includes("SASMEX") ? "SASMEX" : "SSN"}
+                        Fuente: ${sismo.title.startsWith("SASMEX:") ? "SASMEX" : "SSN"}
                     </div>
                 `);
         });
