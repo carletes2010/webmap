@@ -8,9 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Función para asignar íconos personalizados
 function getIcon(sismo) {
-    const title = sismo.title.trim(); // Elimina espacios adicionales
+    const title = sismo.title.trim(); // Limpia espacios
+
     if (title.startsWith("SASMEX:")) {
-        // Ícono para eventos SASMEX
         return L.icon({
             iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
             iconSize: [40, 40],
@@ -18,10 +18,8 @@ function getIcon(sismo) {
             popupAnchor: [0, -40]
         });
     } else {
-        // Extraer la magnitud del título
         const magnitude = parseFloat(title.split(",")[0]) || 0;
 
-        // Asignar íconos según la magnitud
         if (magnitude < 4) {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/leve.png',
@@ -47,24 +45,34 @@ function getIcon(sismo) {
     }
 }
 
+// Función para validar y corregir coordenadas
+function validarCoordenadas(lat, lon) {
+    // Si la latitud está fuera del rango válido, intercambiar valores
+    if (lat < -90 || lat > 90) {
+        console.warn("Corrigiendo coordenadas:", lat, lon);
+        return [lon, lat]; // Intercambiar
+    }
+    return [lat, lon];
+}
+
 // Realizar GET a la API de sismos
 fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
     .then(response => response.json())
     .then(data => {
-        console.log("Datos obtenidos:", data); // Verifica los datos en la consola
+        console.log("Datos obtenidos:", data);
 
         // Iterar y agregar cada sismo al mapa
         data.forEach(sismo => {
-            const title = sismo.title.trim(); // Limpiar el título
-            const coords = [parseFloat(sismo.latitude), parseFloat(sismo.longitude)];
+            const title = sismo.title.trim();
+            let coords = validarCoordenadas(parseFloat(sismo.latitude), parseFloat(sismo.longitude));
 
-            // Validar coordenadas
+            // Validar que las coordenadas sean válidas
             if (isNaN(coords[0]) || isNaN(coords[1])) {
-                console.warn("Coordenadas inválidas para:", sismo);
-                return; // Salta si las coordenadas son inválidas
+                console.warn("Coordenadas inválidas:", sismo);
+                return;
             }
 
-            const icon = getIcon(sismo); // Obtener el ícono personalizado
+            const icon = getIcon(sismo); // Obtener ícono
 
             // Crear marcador con popup
             L.marker(coords, { icon: icon })
