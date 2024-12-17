@@ -4,79 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SASJC MAP</title>
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        /* Estilo para que el mapa ocupe toda la pantalla */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Evita el scroll */
-        }
-
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        .info-box {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-        }
-
-        /* Estilo para el logo en la parte superior derecha */
-        .logo {
-            position: absolute;
-            top: 80px;
-            right: 90px;
-            width: 300px; /* Ajusta el tamaño del logo */
-            height: auto;
-            z-index: 1000; /* Para que esté sobre el mapa */
-        }
-
-        /* Estilo para la simbología en la esquina inferior derecha */
-        .simbolgia {
-            position: absolute;
-            bottom: 30px;
-            left: 20px;
-            width: 270px; /* Ajusta el tamaño de la simbología */
-            height: auto;
-            z-index: 1000; /* Para que esté sobre el mapa */
-        }
-
-        /* Estilo para la marca de agua */
-        .marca-agua {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.2; /* Hace la marca de agua transparente */
-            pointer-events: none; /* Evita interferencias con el mapa */
-            z-index: 999; /* Coloca la marca sobre el mapa */
-            width: 300px; /* Tamaño de la marca de agua */
-            height: auto;
-        }
-    </style>
 </head>
 <body>
-    <!-- Contenedor del mapa -->
-    <div id="map"></div>
+    <script>
+        
+        const encodedHTML = "PCEtLSBDb2RpZmljYWRvIGVuIEJhc2U2NCAtLT4KPCFET0NUWVBFIGh0bWw+PGh0bWwgbGFuZz0iZXMiPjxoZWFkPjxtZXRhIGNoYXJzZXQ9IlVURi04Ij48bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEiPjx0aXRsZT5TQVNKQyBNQVA8L3RpdGxlPjwhLS0gQ3NzIHkgTGVhZmxldCAtLT48bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vdW5wa2cuY29tL2xlYWZsZXRAMy4xMi9kaXN0L2xlYWZsZXQuY3NzIiAvPjxzdHlsZT5odG1sLGJvZHl7bWFyZ2luOjB9I21heHtwb3NpdGlvbjphYnNvbHV0ZTtoZWlnaHQ6MTAwJTt3aWR0aDoxMDAlO31pbWcuc2FzYmp7cG9zaXRpb246YWJzb2x1dGU7dG9wOjgwcHg7cmlnaHQ6OTBweDtoZWlnaHQ6YXV0bzsgd2lkdGg6MzAwcHg7enppbmRleDoxMDAwO30uaW5mby10ZXh0e2JhY2tncm91bmQ6I2ZmZjtwYWRkaW5nOjEwcHg7Ym9yZGVyLXJhZGl1czoxMHB4O31pbWcuc2ltYm9sb3dpY3RvYXJlc3RpczpiYWNrZ3JvdW5kOjNmMzAzMDM7fTwvc3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgaWQ9Im1heCI+PC9kaXY+PGltZyBzcmM9IlNBU0pDLnBuZyIgYWx0PSJMb2dvIiBjbGFzcz0ic2FzYmpLIj48aW1nIHNyYz0ic2ltYm9sZ2lhLnBuZyIgYWx0PSJTaW1ib2xvZ2lhIiBjbGFzcz0ic2ltYm9sb3dpY3RvIj48L2JvZHk+PHNjcmlwdCBzcmM9Imh0dHBzOi8vdW5wa2cuY29tL2xlYWZsZXRAMy4xMi9kaXN0L2xlYWZsZXQuanMiPjwvc2NyaXB0PjxzY3JpcHQ+Ly8gRGVjb2RpZmljYSBlbCBIVU1MIGNvZGlnYWRvCmNvbnN0IGRlY29kaWZpY2FyID0gYmFzZTY0LmRlY29kZShiYXNlNjRBbHRvRGVjb2RlKGVuY29kZWRIVE1MLCBkYXRhPik7ZG9jdW1lbnQuYm9keS5pbm5lckhUTUwgPSBkZWNvZGlmaWNhcjwvc2NyaXB0PjwvaHRtbD4=";
 
-    <!-- Logo en el costado derecho -->
-    <img src="SASJC.png" alt="Logo SASJC" class="logo">
-
-    <!-- Simbología en la esquina inferior derecha -->
-    <img src="simbolgia.png" alt="Simbología" class="simbolgia">
-
-    <!-- Marca de agua centrada -->
-    <img src="SASJC.png" alt="Marca de Agua" class="marca-agua">
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- JavaScript personalizado -->
-    <script src="script.js"></script>
+        
+        document.write(atob(encodedHTML));
+    </script>
 </body>
 </html>
