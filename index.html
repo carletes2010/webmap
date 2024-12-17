@@ -59,6 +59,29 @@
             width: 300px; /* Tamaño de la marca de agua */
             height: auto;
         }
+
+        /* Copyright debajo de la simbología */
+        .copyright {
+            position: absolute;
+            bottom: 5px;
+            left: 20px;
+            font-size: 12px;
+            color: gray;
+            z-index: 1000;
+        }
+
+        /* Cuenta regresiva en la esquina inferior derecha */
+        .countdown {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -71,12 +94,36 @@
     <!-- Simbología en la esquina inferior derecha -->
     <img src="simbolgia.png" alt="Simbología" class="simbolgia">
 
+    <!-- Copyright debajo de la simbología -->
+    <div class="copyright">© SASJC - Todos los derechos reservados</div>
+
+    <!-- Cuenta regresiva en la esquina inferior derecha -->
+    <div class="countdown" id="countdown">Reiniciando en: 15:00</div>
+
     <!-- Marca de agua centrada -->
     <img src="SASJC.png" alt="Marca de Agua" class="marca-agua">
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- JavaScript personalizado -->
-    <script src="script.js"></script>
+
+    <!-- Script para la cuenta regresiva -->
+    <script>
+        const countdownElement = document.getElementById("countdown");
+        let timeLeft = 15 * 60; // 15 minutos en segundos
+
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+
+            countdownElement.textContent = `Reiniciando en: ${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                location.reload(); // Reinicia la página
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Actualiza cada segundo
+    </script>
 </body>
 </html>
