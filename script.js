@@ -1,23 +1,25 @@
 // Inicializa el mapa centrado en la CDMX
 const map = L.map('map').setView([19.4326, -99.1332], 6);
 
-// Agregar la capa de mapa base desde OpenStreetMap
+// Agregar capa de mapa base desde OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 // Función para asignar íconos personalizados
 function getIcon(sismo) {
-    if (sismo.title.includes("SASMEX")) {
+    const title = sismo.title.toUpperCase(); // Convertir a mayúsculas para comparación segura
+
+    if (title.includes("SASMEX")) {
         // Icono para eventos SASMEX
         return L.icon({
-            iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png', // Ícono especial
+            iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
             iconSize: [40, 40],
             iconAnchor: [20, 40],
             popupAnchor: [0, -40]
         });
     } else {
-        // Iconos basados en magnitud para eventos SSN
+        // Iconos basados en magnitud
         const magnitude = parseFloat(sismo.title.split(",")[0]) || 0;
 
         if (magnitude < 4) {
@@ -49,7 +51,7 @@ function getIcon(sismo) {
 fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
     .then(response => response.json())
     .then(data => {
-        console.log("Datos obtenidos:", data); // Para depuración en consola
+        console.log("Datos obtenidos:", data); // Verifica los datos en la consola
 
         // Iterar y agregar cada sismo al mapa
         data.forEach(sismo => {
@@ -62,7 +64,7 @@ fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
                 .bindPopup(`
                     <div class="info-box">
                         <b>${sismo.title}</b><br>
-                        Origen: ${sismo.title.includes("SASMEX") ? "SASMEX" : "SSN"}
+                        Origen: ${sismo.title.toUpperCase().includes("SASMEX") ? "SASMEX" : "SSN"}
                     </div>
                 `);
         });
