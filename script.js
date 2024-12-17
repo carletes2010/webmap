@@ -9,11 +9,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Función para obtener ícono según la magnitud
 function getIcon(magnitude) {
     if (magnitude < 4) {
-        return 'https://example.com/leve.png'; // URL de ícono para sismos leves
+        return 'leve.png'; // URL de ícono para sismos leves
     } else if (magnitude < 6) {
-        return 'https://example.com/moderado.png'; // Ícono moderado
+        return 'moderado.png'; // Ícono moderado
     } else {
-        return 'https://example.com/fuerte.png'; // Ícono fuerte
+        return 'fuerte.png'; // Ícono fuerte
     }
 }
 
