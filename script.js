@@ -13,7 +13,7 @@ function getIcon(sismo) {
     if (title.startsWith("SASMEX:")) {
         return L.icon({
             iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
-            iconSize: [40, 40],
+            iconSize: [50, 50],
             iconAnchor: [20, 40],
             popupAnchor: [0, -40]
         });
@@ -23,21 +23,21 @@ function getIcon(sismo) {
         if (magnitude < 4) {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/leve.png',
-                iconSize: [40, 40],
+                iconSize: [50, 50],
                 iconAnchor: [20, 40],
                 popupAnchor: [0, -40]
             });
         } else if (magnitude < 6) {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/moderado.png',
-                iconSize: [40, 40],
+                iconSize: [50, 50],
                 iconAnchor: [20, 40],
                 popupAnchor: [0, -40]
             });
         } else {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/fuerte.png',
-                iconSize: [40, 40],
+                iconSize: [50, 50],
                 iconAnchor: [20, 40],
                 popupAnchor: [0, -40]
             });
