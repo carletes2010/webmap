@@ -43,14 +43,27 @@
             z-index: 1000;
         }
 
-        /* Estilo para la simbología */
+        /* Simbología */
         .simbolgia {
             position: absolute;
-            bottom: 30px;
+            bottom: 50px;
             left: 20px;
             width: 270px;
             height: auto;
             z-index: 1000;
+        }
+
+        /* Marca de agua */
+        .marca-agua {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 999;
+            width: 300px;
+            height: auto;
         }
     </style>
 </head>
@@ -58,7 +71,7 @@
     <!-- Contenedor del mapa -->
     <div id="map"></div>
 
-    <!-- Simbología en la esquina inferior derecha -->
+    <!-- Simbología en la esquina inferior izquierda -->
     <img src="simbolgia.png" alt="Simbología" class="simbolgia">
 
     <!-- Copyright debajo de la simbología -->
@@ -67,19 +80,16 @@
     <!-- Cuenta regresiva -->
     <div class="countdown" id="countdown">Reiniciando en: 15:00</div>
 
+    <!-- Marca de agua centrada -->
+    <img src="SASJC.png" alt="Marca de Agua" class="marca-agua">
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
+
+    <!-- Script para cuenta regresiva -->
     <script>
-        // Inicialización del mapa
-        document.addEventListener("DOMContentLoaded", function () {
-            const map = L.map('map').setView([19.4326, -99.1332], 6); // Coordenadas CDMX
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-        });
-
-        // Lógica de cuenta regresiva
         const countdownElement = document.getElementById("countdown");
         let timeLeft = 15 * 60; // 15 minutos en segundos
 
