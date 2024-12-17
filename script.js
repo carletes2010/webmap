@@ -9,11 +9,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Función para obtener ícono según la magnitud
 function getIcon(magnitude) {
     if (magnitude < 4) {
-        return 'leve.png'; // URL de ícono para sismos leves
+        return 'https://webmap-teal.vercel.app/leve.png'; // URL de ícono para sismos leves
     } else if (magnitude < 6) {
-        return 'moderado.png'; // Ícono moderado
+        return 'https://webmap-teal.vercel.app/moderado.png'; // Ícono moderado
     } else {
-        return 'fuerte.png'; // Ícono fuerte
+        return 'https://webmap-teal.vercel.app/fuerte.png'; // Ícono fuerte
     }
 }
 
