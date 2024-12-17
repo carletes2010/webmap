@@ -65,11 +65,24 @@
             width: 300px;
             height: auto;
         }
+
+        /* Logo en la esquina superior derecha */
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <!-- Contenedor del mapa -->
     <div id="map"></div>
+
+    <!-- Logo en la esquina superior derecha -->
+    <img src="SASJC.png" alt="Logo SASJC" class="logo">
 
     <!-- Simbología en la esquina inferior izquierda -->
     <img src="simbolgia.png" alt="Simbología" class="simbolgia">
@@ -77,7 +90,7 @@
     <!-- Copyright debajo de la simbología -->
     <div class="copyright">© SASJC - Todos los derechos reservados</div>
 
-    <!-- Cuenta regresiva -->
+    <!-- Cuenta regresiva en la esquina inferior derecha -->
     <div class="countdown" id="countdown">Reiniciando en: 15:00</div>
 
     <!-- Marca de agua centrada -->
