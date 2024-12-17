@@ -39,7 +39,7 @@ fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
             // Crear un ícono personalizado según la magnitud
             const icon = L.icon({
                 iconUrl: getIcon(magnitude),
-                iconSize: [40, 40],  // Tamaño del ícono
+                iconSize: [60, 60],  // Tamaño del ícono
                 iconAnchor: [20, 40], // Punto de anclaje
                 popupAnchor: [0, -40] // Popup encima del ícono
             });
