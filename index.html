@@ -27,12 +27,22 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
 
-        /* Estilo para el logo */
+        /* Estilo para el logo en la parte superior derecha */
         .logo {
             position: absolute;
             top: 80px;
             right: 90px;
             width: 300px; /* Ajusta el tamaño del logo */
+            height: auto;
+            z-index: 1000; /* Para que esté sobre el mapa */
+        }
+
+        /* Estilo para la simbología en la esquina inferior derecha */
+        .simbolgia {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px; /* Ajusta el tamaño de la simbología */
             height: auto;
             z-index: 1000; /* Para que esté sobre el mapa */
         }
@@ -44,6 +54,9 @@
 
     <!-- Logo en el costado derecho -->
     <img src="SASJC.png" alt="Logo SASJC" class="logo">
+
+    <!-- Simbología en la esquina inferior derecha -->
+    <img src="simbolgia.png" alt="Simbología" class="simbolgia">
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
