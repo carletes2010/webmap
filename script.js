@@ -8,9 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Función para asignar íconos personalizados
 function getIcon(sismo) {
-    // Detectar si el título contiene "SASMEX:"
-    if (sismo.title.startsWith("SASMEX:")) {
-        // Ícono especial para eventos SASMEX
+    const title = sismo.title.trim(); // Elimina espacios adicionales
+    if (title.startsWith("SASMEX:")) {
+        // Ícono para eventos SASMEX
         return L.icon({
             iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
             iconSize: [40, 40],
@@ -19,7 +19,7 @@ function getIcon(sismo) {
         });
     } else {
         // Extraer la magnitud del título
-        const magnitude = parseFloat(sismo.title.split(",")[0]) || 0;
+        const magnitude = parseFloat(title.split(",")[0]) || 0;
 
         // Asignar íconos según la magnitud
         if (magnitude < 4) {
@@ -55,7 +55,15 @@ fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
 
         // Iterar y agregar cada sismo al mapa
         data.forEach(sismo => {
-            const coords = [sismo.latitude, sismo.longitude];
+            const title = sismo.title.trim(); // Limpiar el título
+            const coords = [parseFloat(sismo.latitude), parseFloat(sismo.longitude)];
+
+            // Validar coordenadas
+            if (isNaN(coords[0]) || isNaN(coords[1])) {
+                console.warn("Coordenadas inválidas para:", sismo);
+                return; // Salta si las coordenadas son inválidas
+            }
+
             const icon = getIcon(sismo); // Obtener el ícono personalizado
 
             // Crear marcador con popup
@@ -63,8 +71,8 @@ fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
                 .addTo(map)
                 .bindPopup(`
                     <div class="info-box">
-                        <b>${sismo.title}</b><br>
-                        Fuente: ${sismo.title.startsWith("SASMEX:") ? "SASMEX" : "SSN"}
+                        <b>${title}</b><br>
+                        Fuente: ${title.startsWith("SASMEX:") ? "SASMEX" : "SSN"}
                     </div>
                 `);
         });
