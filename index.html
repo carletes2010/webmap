@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa de Sismos</title>
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha512-sA+oV+H7hUewBL6M1fT5bQe+NsWWpU7OcD7iNTltV+w9EKRUlgc9Fi9gOMuiccf6TDQ69Xg+6NaAgSWpIjjJqA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
+        /* Estilo básico para el mapa */
         #map {
             height: 100vh;
             width: 100%;
+        }
+        .info-box {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -18,8 +25,8 @@
     <div id="map"></div>
 
     <!-- Leaflet JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-o1eB5K5KL1ZQaf/0lRebbXRMqJ3cmVtvUJKwgG1pD3Pa94nzUahAdPRQeT18NFcP+quzkgO1cq3wGF/M1sUL8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Script Principal -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- JavaScript personalizado -->
     <script src="script.js"></script>
 </body>
 </html>
