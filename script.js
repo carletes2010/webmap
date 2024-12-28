@@ -47,19 +47,9 @@ function validarCoordenadas(lat, lon) {
     return [lat, lon];
 }
 
-const obfuscatedUrl = (() => {
-    return (!![]+[])[+!![]] +
-        (!![]+[])[+!![]]+(+!![]+[])+(+!![]+[])[+!![]]+
-        (![]+[])[+!+[]+!+[]] + (![]+[])[+!+[]+!+[]] +
-        ([][[]]+[])[+!![]] +
-        ([][[]]+[])[+!+[]+!+[]] + ([][[]]+[])[+!+[]+!+[]] +
-        (+!+[]+[+!+[]])[+!+[]+!+[]] + ([][[]]+[])[+!+[]+!+[]] +
-        ([][[]]+[])[+!+[]+!+[]] + "p" +
-        ([][[]]+[])[+!+[]+!+[]] + "a" + ([][[]]+[])[+!+[]+!+[]] +
-        ([![]]+[][+!![]])[+!+[]] + "s";
-})();
+const fetchUrl = process.env.NEXT_PUBLIC_FETCH_URL;
 
-fetch(obfuscatedUrl)
+fetch(fetchUrl)
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
