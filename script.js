@@ -1,7 +1,7 @@
 const map = L.map('map').setView([19.4326, -99.1332], 6);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+    attribution: '© OpenStreetMap contributors, SASJC'
 }).addTo(map);
 
 function getIcon(sismo) {
@@ -48,7 +48,7 @@ function validarCoordenadas(lat, lon) {
     return [lat, lon + adjustmentFactor];
 }
 
-fetch('/api/fetchUrl')
+fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
     .then(response => {
         if (!response.ok) {
             throw new Error(`Error al obtener la URL: ${response.status}`);
