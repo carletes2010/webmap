@@ -1,12 +1,12 @@
-// Inicializa el mapa centrado en la CDMX
+// COPYRIGHT SASJC
 const map = L.map('map').setView([19.4326, -99.1332], 6);
 
-// Agregar la capa de mapa base desde OpenStreetMap
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Función para asignar íconos personalizados
+
 function getIcon(sismo) {
     const title = sismo.title.trim();
 
@@ -45,7 +45,7 @@ function getIcon(sismo) {
     }
 }
 
-// Función para validar y corregir coordenadas
+
 function validarCoordenadas(lat, lon) {
     if (lat < -90 || lat > 90) {
         console.warn("Corrigiendo coordenadas:", lat, lon);
@@ -54,7 +54,7 @@ function validarCoordenadas(lat, lon) {
     return [lat, lon];
 }
 
-// Realizar GET a la API
+
 fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
     .then(response => response.json())
     .then(data => {
