@@ -1,11 +1,15 @@
+// COPYRIGHT SASJC
 const map = L.map('map').setView([19.4326, -99.1332], 6);
+
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
+
 function getIcon(sismo) {
     const title = sismo.title.trim();
+
     if (title.startsWith("SASMEX:")) {
         return L.icon({
             iconUrl: 'https://webmap-teal.vercel.app/sasmexevent.png',
@@ -15,6 +19,7 @@ function getIcon(sismo) {
         });
     } else {
         const magnitude = parseFloat(title.split(",")[0]) || 0;
+
         if (magnitude < 4) {
             return L.icon({
                 iconUrl: 'https://webmap-teal.vercel.app/leve.png',
@@ -40,30 +45,32 @@ function getIcon(sismo) {
     }
 }
 
+
 function validarCoordenadas(lat, lon) {
     if (lat < -90 || lat > 90) {
+        console.warn("Corrigiendo coordenadas:", lat, lon);
         return [lon, lat];
     }
     return [lat, lon];
 }
 
-const fetchUrl = process.env.NEXT_PUBLIC_FETCH_URL;
 
-fetch(fetchUrl)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
+fetch('https://api-sismos-ssn-production.up.railway.app/sismos')
+    .then(response => response.json())
     .then(data => {
+        console.log("Datos obtenidos:", data);
+
         data.forEach(sismo => {
             const title = sismo.title.trim();
             const coords = validarCoordenadas(parseFloat(sismo.latitude), parseFloat(sismo.longitude));
+
             if (isNaN(coords[0]) || isNaN(coords[1])) {
+                console.warn("Coordenadas inválidas:", sismo);
                 return;
             }
+
             const icon = getIcon(sismo);
+
             L.marker(coords, { icon: icon })
                 .addTo(map)
                 .bindPopup(`
